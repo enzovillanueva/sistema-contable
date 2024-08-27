@@ -1,11 +1,14 @@
 import { useForm } from "./hooks/useForm";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Login.css"
 import { Head } from "./Head";
 
 export const Login = () => {
+    
+    const navigate = useNavigate();
+
     const initialForm = {
         username: "",
         password: "",
@@ -17,7 +20,8 @@ export const Login = () => {
 
     const onSumbit = async (event) => {
         event.preventDefault();
-        const response = await fetch("http://localhost:8080/api/usuario/login", {
+        console.log(formState)
+        const response = await fetch("http://localhost:8080/api/login", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({username, password})
