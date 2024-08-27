@@ -26,7 +26,7 @@ export const Register = () => {
     const onSumbit = async (event) => {
         event.preventDefault();
         event.preventDefault();
-        const response = await fetch("http://localhost:8080/api/usuario/login", {
+        const response = await fetch("http://localhost:8080/api/usuario/registrar", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password, roles })
