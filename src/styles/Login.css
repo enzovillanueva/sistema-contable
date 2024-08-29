@@ -91,6 +91,10 @@
     transition: .3s ease all;
 }
 
+.form-group div{
+    width: 100%;
+}
+
 .form-input{
     position: relative;
     width: 100%;
@@ -146,6 +150,21 @@ a:hover{
     }
 
     .componentForm{
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .containerLogin {
+        grid-template-columns: 1fr;
+        margin: 2em 1em;
+    }
+
+    .website {
+        display: none;
+    }
+
+    .componentForm {
         justify-content: center;
     }
 }
