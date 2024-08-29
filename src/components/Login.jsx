@@ -1,12 +1,13 @@
 import { useForm } from "./hooks/useForm";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { FaUser, FaLock } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Login.css"
 import { Head } from "./Head";
+import avatar from '../assets/avatar.svg'
+import website from '../assets/webLogin.svg'
 
 export const Login = () => {
-    
+
     const navigate = useNavigate();
 
     const initialForm = {
@@ -20,16 +21,19 @@ export const Login = () => {
 
     const onSumbit = async (event) => {
         event.preventDefault();
-        console.log(formState)
         const response = await fetch("http://localhost:8080/api/login", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({username, password})
+            body: JSON.stringify({ username, password })
         });
 
-        if (response.ok){
-            navigate('/home');
-        }else{
+        if (response.ok) {
+            const userData = await response.json();
+            console.log(userData);
+            navigate('/home', {
+                state: { user: userData }
+            });
+        } else {
             alert('error en el inicio de sesión');
         }
     };
@@ -37,44 +41,63 @@ export const Login = () => {
     return (
         <>
             <Head />
-            <div className="componentForm">
-                <Form onSubmit={onSumbit}>
-                    <h2>Iniciar sesion</h2>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Nombre de usuario</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Ingresar nombre de usuario.."
-                            required={true}
-                            name="username"
-                            value={username}
-                            onChange={onInputChange}
-                        />
-                    </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Contraseña</Form.Label>
-                        <Form.Control
-                            type="password"
-                            placeholder="Ingrese contraseña.."
-                            required={true}
-                            name="password"
-                            value={password}
-                            onChange={onInputChange}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Recordar usuario" />
-                    </Form.Group>
+            <div className="containerLogin">
+                <div className="website">
+                    <img src={website} alt=""  />
+                </div>
+                <div className="componentForm">
+                    <form onSubmit={onSumbit}>
+                        <img src={avatar} alt="" className="avatarLogin" />
+                        <h2>Inicia sesión</h2>
 
+                        <div className="form-group focus">
+                            <div className="i">
+                                <FaUser className="icon"/>
+                            </div>
 
-                    <Button variant="primary" type="submit">
-                        Iniciar sesion
-                    </Button>
-                    <p>¿No tienes cuenta? <Link className="abc" to="/register"><b>Registrate</b></Link></p>
+                            <div>
+                                <label htmlFor="username">Nombre de usuario: </label>
+                                <input
+                                    type="text"
+                                    className="form-input"
+                                    name="username"
+                                    value={username}
+                                    onChange={onInputChange}
+                                />
+                            </div>
+                        </div>
 
+                        <div className="form-group focus">
+                            <div className="i">
+                                <FaLock className="icon"/>
+                            </div>
 
-                </Form>
+                            <div>
+                                <label htmlFor="password">Contraseña: </label>
+                                <input
+                                    type="password"
+                                    className="form-input"
+                                    name="password"
+                                    value={password}
+                                    onChange={onInputChange}
+                                />
+                            </div>
+                        </div>
+                        
+                        <a href="#">¿Olvidaste tu contraseña?</a>
+                        
+
+                       
+                        <input type="submit" name="send-form" value={"INICIAR SESIÓN"} className="form-sumbit" />
+                        
+
+                        <p className="form-register" href="#">
+                            ¿No tienes cuenta?{' '}
+                            <Link className="abc" to="/register"><b>Registrate</b></Link>
+                        </p>
+                    </form>
+                </div>
             </div>
         </>
     );

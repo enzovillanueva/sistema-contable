@@ -1,30 +1,34 @@
-import { Button, NavbarCollapse } from 'react-bootstrap';
+import { Badge, Button, NavbarCollapse, Stack } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
+import { IoIosLogOut } from "react-icons/io";
+import logo from '../assets/logo-sistema.png'
+import '../styles/Head.css'
 
-export const Head = ({ login = false }) => {
+export const Head = ({ login = false, rol }) => {
 
     const navigate = useNavigate();
 
     return (
         <>
-            <Navbar bg="dark" data-bs-theme="dark">
-                <Container>
-                    <Navbar.Brand>Sistema contable</Navbar.Brand>
-                    <NavbarCollapse>
-                        <Nav className="me-auto">
-                            <Nav.Link onClick={() => navigate("/")}>inicio</Nav.Link>
-                        </Nav>
+            <header className='cabecera'>
+                <div onClick={() => navigate("/")} className="logo">
+                    <img src={logo} alt="" />
+                </div>
 
-
-                        {login ? <Button onClick={() => navigate("/")} variant="outline-success">Cerrar sesion</Button>
-                            : <Button onClick={() => navigate("/login")} variant="outline-success">Iniciar sesion</Button>}
-                    </NavbarCollapse>
-                </Container>
-
-            </Navbar >
+                <nav className='links'>
+                { login && (rol == 'SUPERUSER' ? <div className='roles a'>Administrador</div>
+                            : <div className='roles b'><a href="">Usuario</a></div> )}
+                    <ul>
+                        <li><a href="">Inicio</a></li>
+                        <li><a href="">Servicios</a></li>
+                    </ul>
+                </nav>
+                {login ? <button onClick={() => navigate("/")} className='log-button out'><IoIosLogOut size={24}/></button> 
+                : <button onClick={() => navigate("/login")} className='log-button in'>Iniciar sesión</button> }
+            </header>
         </>
     );
 }

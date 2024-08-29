@@ -1,0 +1,95 @@
+
+.cabecera{
+    display: flex;
+    background-color: #1b3039;
+    justify-content: space-between;
+    align-items: center;
+    height: 85px;
+    padding: 5px 10%;
+}
+
+.cabecera .logo{
+    cursor: pointer;
+    margin-right: auto;
+}
+
+.cabecera .logo img{
+    height: 50px;
+    width: auto;
+    transition: all 0.3s;
+}
+
+.cabecera .logo img:hover{
+    transform: scale(1.04);
+}
+
+.cabecera .links{
+    display: flex;
+    list-style: none;
+    padding: 5px ;
+}
+
+.cabecera .links ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.cabecera .links li{
+    padding: 0 20px;
+    transition: all 0.3s;
+}
+
+.cabecera .links li:hover{
+    transform: scale(1.1);
+}
+
+.cabecera .links a{
+    font-size: 1.2em;
+    color: white;
+    text-decoration: none;
+}
+
+.cabecera .links .roles{
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.cabecera .links .roles.b{
+    background-color: #214d5f;
+}
+
+.cabecera .links .roles.a{
+    color: white;
+    background: linear-gradient(27deg, rgba(63,94,251,1) 0%, rgb(252, 70, 107, 1) 100%);;
+}
+
+.cabecera .links li a:hover{
+    color: rgba(63,94,251,1)
+}
+
+
+.cabecera .log-button{
+    color: #1b3039;
+    font-weight: bolder;
+    padding: 9px 25px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    transition: all .3s ;
+}
+
+.cabecera .log-button.out{
+    background-color: rgba(252,70,107,1);
+}
+
+.cabecera .log-button.in{
+    background-color: rgba(63,94,251,1);
+}
+
+.cabecera .log-button:hover{
+    color: white;
+    transform: scale(1.2);
+}
