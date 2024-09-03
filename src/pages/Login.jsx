@@ -1,8 +1,8 @@
-import { useForm } from "./hooks/useForm";
+import { useForm } from "../hooks/useForm";
 import { FaUser, FaLock } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/Login.css"
-import { Head } from "./Head";
+import "../styles/FormLoginRegister.css"
+import { Head } from "../components/Header";
 import avatar from '../assets/avatar.svg'
 import website from '../assets/webLogin.svg'
 
@@ -12,10 +12,11 @@ export const Login = () => {
 
     const initialForm = {
         username: "",
+        username: "",
         password: "",
     };
 
-    const { formState, setFormState, onInputChange } = useForm(initialForm);
+    const { formState, onInputChange } = useForm(initialForm);
 
     const { username, password } = formState;
 
@@ -85,7 +86,7 @@ export const Login = () => {
                             </div>
                         </div>
                         
-                        <a href="#">¿Olvidaste tu contraseña?</a>
+                        <a className="a link" href="#">¿Olvidaste tu contraseña?</a>
                         
 
                        
@@ -94,7 +95,7 @@ export const Login = () => {
 
                         <p className="form-register" href="#">
                             ¿No tienes cuenta?{' '}
-                            <Link className="abc" to="/register"><b>Registrate</b></Link>
+                            <Link className="link" to="/register"><b>Registrate</b></Link>
                         </p>
                     </form>
                 </div>

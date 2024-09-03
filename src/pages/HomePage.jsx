@@ -1,5 +1,5 @@
 import React from 'react'
-import { Head } from './Head'
+import { Head } from '../components/Header'
 import { ArticleHomePage } from './ArticleHomePage'
 import { useLocation } from 'react-router-dom';
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUsersAll } from './hooks/useUsersAll'
+import { useUsersAll } from '../hooks/useUsersAll'
 import Table from 'react-bootstrap/Table';
 import "../styles/ArticleHomePage.css"
 

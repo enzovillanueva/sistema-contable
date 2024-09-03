@@ -1,6 +1,6 @@
-import { useForm } from "./hooks/useForm";
+import { useForm } from "../hooks/useForm";
 import { Link, useNavigate } from "react-router-dom";
-import { Head } from "./Head";
+import { Head } from "../components/Header";
 import { FaUser, FaLock } from "react-icons/fa";
 import websiteSign from '../assets/websiteSign.svg'
 import avatarSign from '../assets/avatarRegister.svg'

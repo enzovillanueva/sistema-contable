@@ -1,3 +1,6 @@
+
+@import url('./themes/colors.css');
+
 .cabecera{
     display: flex;
     background-color: #1b3039;
@@ -61,11 +64,11 @@
 
 .cabecera .links .roles.a{
     color: white;
-    background: linear-gradient(27deg, rgba(63,94,251,1) 0%, rgb(252, 70, 107, 1) 100%);;
+    background: linear-gradient(27deg, var(--color-gradiant_2) 0%, var(--color-gradiant_1) 100%);;
 }
 
 .cabecera .links li a:hover{
-    color: rgba(63,94,251,1)
+    color: var(--color-gradiant_2)
 }
 
 
@@ -81,11 +84,11 @@
 }
 
 .cabecera .log-button.out{
-    background-color: rgba(252,70,107,1);
+    background-color: var(--color-gradiant_1);
 }
 
 .cabecera .log-button.in{
-    background-color: rgba(63,94,251,1);
+    background-color: var(--color-gradiant_2);
 }
 
 .cabecera .log-button:hover{
