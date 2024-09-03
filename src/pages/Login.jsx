@@ -6,14 +6,13 @@ import { Head } from "../components/Header";
 import avatar from '../assets/avatar.svg'
 import website from '../assets/webLogin.svg'
 
-export const Login = () => {
+export const Login = ({setIsAuthenticate}) => {
 
     const navigate = useNavigate();
 
     const initialForm = {
         username: "",
-        username: "",
-        password: "",
+        password: ""
     };
 
     const { formState, onInputChange } = useForm(initialForm);
@@ -30,7 +29,7 @@ export const Login = () => {
 
         if (response.ok) {
             const userData = await response.json();
-            console.log(userData);
+            setIsAuthenticate(true);
             navigate('/home', {
                 state: { user: userData }
             });

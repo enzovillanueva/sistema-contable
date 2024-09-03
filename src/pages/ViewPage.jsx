@@ -9,7 +9,7 @@ export const ViewPage = () => {
       <Head />
       <div className='container-view'>
         <div className="img-view">
-          <img src={animation}  />
+          {/*<img src={animation}  />*/}
         </div>
         <div className='content-view'>
           <div>
