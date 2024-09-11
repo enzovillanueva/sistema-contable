@@ -1,10 +1,6 @@
 
 @import url('./themes/colors.css');
 
-.containerLogin.sign{
-    border: 2px solid var(--color-gradiant_1);
-}
-
 .register-selection{
     display: flex;
     justify-content: space-between;

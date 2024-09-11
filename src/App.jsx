@@ -1,31 +1,28 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom"
 import { Login } from "./pages/Login"
 import { Register } from "./pages/Register"
-import { ViewPage } from "./pages/ViewPage"
-import { HomePage } from "./pages/HomePage"
-import { useState } from "react"
-
-function ProtectedRoute({ element, isAuthenticated }) {
-  if (isAuthenticated)
-    return element;
-  alert("Ruta protegida. Tienes que iniciar sesión");
-  return <Navigate to={"/login"}/>
-}
+import { Preview } from "./pages/Preview"
+import { Home } from "./pages/Home"
+import { UserProvider } from "./context/UserProvider"
+import { useAuth } from "./hooks/useAuth"
+import { ProtectedRoute } from "./components/ProtectedRoute"
 
 export const App = () => {
 
-  const [isAuthenticated, setIsAuthenticate] = useState(false)
+  const { isAuthenticated, login, logout } = useAuth();
 
   return (
     <>
+    <UserProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<ViewPage/>}/>
-          <Route path="/login" element={<Login setIsAuthenticate={setIsAuthenticate}/>}/>
+          <Route path="/" element={<Preview/>}/>
+          <Route path="/login" element={<Login onLogin={login}/>}/>
           <Route path="/register" element={<Register/>}></Route>
-          <Route path="/home" element={<ProtectedRoute isAuthenticated={isAuthenticated} element={<HomePage/>}/>}></Route>
+          <Route path="/home" element={<ProtectedRoute isAuthentication={isAuthenticated} element={<Home onLogout={logout}/>}/>}></Route>
         </Routes>
       </Router>
+    </UserProvider>
     </>
   )
 }

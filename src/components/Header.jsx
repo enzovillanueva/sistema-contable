@@ -1,40 +1,53 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
-import { CiMenuFries } from "react-icons/ci";
-import logo from '../assets/icono-sistema.png'
-import '../styles/Header.css'
-import { useState } from 'react';
+import { useUser } from "../context/UserProvider";
+import logo from "../assets/icono-sistema.png";
+import "../styles/Header.css";
 
-export const Head = ({ login = false, rol }) => {
+export const Head = ({ login = false, logout, rol }) => {
+  const navigate = useNavigate();
+  const { setUser } = useUser();
 
-    const [menuOpen, setMenuOpen] = useState(false)
-    const navigate = useNavigate();
-    
-    const toggleMenu = () => setMenuOpen(!menuOpen);
+  const handleLogout = () => {
+    setUser(null);
+    logout()
+    navigate('/login');
+  };
 
-    return (
-        <>
-            <header className='cabecera'>
-                <Link className='logo-system' style={ {textDecoration: 'none'} } to={"/"}>
-                    <img src={logo} alt="" />
-                    <span>Sistema contable</span>
-                </Link>
-
-                <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
-                    <Link style={ {textDecoration: 'none'} } className='link active'>INICIO</Link>
-                    <Link style={ {textDecoration: 'none'} } className='link'>SERVICIOS</Link>
-                    <Link style={ {textDecoration: 'none'} } className='link'>CONTACTOS</Link>
-                </nav>
-                
-                <div className='div-nav'>
-                    { login && (rol == 'SUPERUSER' ? <div className='roles a'>Administrador</div>
-                            : <div className='roles b'>Usuario</div> )}
-
-                    {login ? <button onClick={() => navigate("/")} className='log-button out'><IoIosLogOut size={24}/></button> 
-                    : <button onClick={() => navigate("/login")} className='log-button in'>Iniciar sesión</button> }
-                    <div className='menu-links' onClick={toggleMenu}><CiMenuFries color='white' size={36}/></div>
-                </div>
-            </header>
-        </>
-    );
+  return (
+    <>
+      <header className="cabecera" style={ {background: ` ${login ? "rgba(255, 255, 255, 0.2)" : "rgb(0, 0, 0, 0.6)"}`} }>
+        {login ? (
+          rol == "SUPERUSER" ? (
+            <div className="roles a">Administrador</div>
+          ) : (
+            <div className="roles b">Usuario</div>
+          )
+        ) : (
+          <Link
+            className="logo-system"
+            style={{ textDecoration: "none" }}
+            to={"/"}
+          >
+            <img src={logo} alt="" />
+            <span>Sistema contable</span>
+          </Link>
+        )}
+        <div className="div-nav">
+          {login ? (
+            <button onClick={handleLogout} className="log-button out">
+              <IoIosLogOut size={36} />
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate("/login")}
+              className="log-button in"
+            >
+              Iniciar sesión
+            </button>
+          )}
+        </div>
+      </header>
+    </>
+  );
 }

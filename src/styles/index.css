@@ -15,10 +15,12 @@ html{
 
 body{
     min-height: 100vh;
+    background-color: #fff;
     background: var(--color-gradiant_2);
     background: linear-gradient(27deg, var(--color-gradiant_2) 0%, var(--color-gradiant_1) 100%);
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-color: var(--color-gradiant_2);
+    /* background-color: var(--color-gradiant_2); */
 }
+

@@ -7,9 +7,11 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 2rem;
-    padding: 2rem;
+    padding: 4rem;
     border-radius: 8px;
-    border: 2px solid dodgerblue;
+    box-shadow: 13px 13px 44px -19px rgba(0,0,0,0.73);
+    -webkit-box-shadow: 13px 13px 44px -19px rgba(0,0,0,0.73);
+    -moz-box-shadow: 13px 13px 44px -19px rgba(0,0,0,0.73);
     background-color: white;
     max-width: 500px;
 }
@@ -41,7 +43,7 @@
 /* Titulo del registro */
 .componentForm form h2{
     font-size: 2em;
-    margin-bottom: 1rem;
+    margin-bottom: 4rem;
 }
 
 /* Las partes (labels e inputs) del login */
@@ -165,6 +167,7 @@
     .containerLogin {
         grid-template-columns: 1fr;
         margin: 2em 1em;
+        padding: 2rem;
     }
 
     .website {
