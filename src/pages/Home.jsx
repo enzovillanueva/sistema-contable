@@ -7,13 +7,7 @@ import "../styles/Home.css";
 
 export const Home = ( {onLogout} ) => {
 
-  const { user } = useUser()
-
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const { user } = useUser();
   
   if (!user) {
     navigate('/login');
@@ -23,7 +17,7 @@ export const Home = ( {onLogout} ) => {
   return (
     <>
       <div className={`view-layout`}>
-        <Aside isOpen={menuOpen} toggleMenu={toggleMenu} />
+        <Aside />
         <div className="main-content">
           <Head login={true} logout={onLogout} rol={user?.roles} />
           {user?.roles == "SUPERUSER" ? (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineDashboard, MdOutlineSupervisorAccount } from "react-icons/md";
 import { TbReportAnalytics } from "react-icons/tb";
@@ -7,10 +7,16 @@ import { MdDeveloperMode } from "react-icons/md";
 import logo from "../assets/icono-sistema.png";
 import "../styles/Aside.css";
 
-export const Aside = ({ isOpen, toggleMenu }) => {
+export const Aside = () => {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
-    <aside className={`side-bar ${isOpen ? "open" : ""}`}>
+    <aside className={`side-bar ${menuOpen ? "open" : ""}`}>
       <Link
         className="logo-aside"
         style={{ textDecoration: "none" }}
