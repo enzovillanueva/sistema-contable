@@ -4,21 +4,15 @@ import { useUser } from "../context/UserProvider";
 import logo from "../assets/icono-sistema.png";
 import "../styles/Header.css";
 
-export const Head = ({ login = false, logout, rol }) => {
+export const Head = ({ login = false, logout }) => {
   const navigate = useNavigate();
-  const { setUser } = useUser();
-
-  const handleLogout = () => {
-    setUser(null);
-    logout()
-    navigate('/login');
-  };
+  const { user } = useUser();
 
   return (
     <>
       <header className="cabecera" style={ {background: ` ${login ? "rgba(255, 255, 255, 0.2)" : "rgb(0, 0, 0, 0.6)"}`} }>
         {login ? (
-          rol == "SUPERUSER" ? (
+          user?.roles === "SUPERUSER" ? (
             <div className="roles a">Administrador</div>
           ) : (
             <div className="roles b">Usuario</div>
@@ -35,7 +29,7 @@ export const Head = ({ login = false, logout, rol }) => {
         )}
         <div className="div-nav">
           {login ? (
-            <button onClick={handleLogout} className="log-button out">
+            <button onClick={() => logout()} className="log-button out">
               <IoIosLogOut size={36} />
             </button>
           ) : (

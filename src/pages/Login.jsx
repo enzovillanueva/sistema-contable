@@ -1,5 +1,5 @@
 import { useForm } from "../hooks/useForm";
-import { Head } from "../components/Header";
+import { Head } from "../components/Head";
 import { LoginForm } from "../components/Login/LoginForm";
 import { useUser } from "../context/UserProvider";
 import { LoginAside } from "../components/Login/LoginAside";

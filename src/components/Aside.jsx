@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { MdOutlineDashboard, MdOutlineSupervisorAccount } from "react-icons/md";
-import { TbReportAnalytics } from "react-icons/tb";
-import { IoAnalytics, IoSettingsOutline } from "react-icons/io5";
-import { MdDeveloperMode } from "react-icons/md";
+import { MdOutlineAccountBalance, MdOutlineSupervisorAccount } from "react-icons/md";
+import { PiSneakerMove } from "react-icons/pi";
+import { IoSettingsOutline, IoHomeOutline, IoBookOutline } from "react-icons/io5";
 import logo from "../assets/icono-sistema.png";
 import "../styles/Aside.css";
+
+const sizeIcon = 36;
+const colorIcon = "white";
 
 export const Aside = () => {
 
@@ -29,34 +31,34 @@ export const Aside = () => {
       <ul className="links-aside">
         <h4>Menu principal</h4>
         <li>
-          <MdOutlineDashboard size={36} color="white" />
-          <Link className="elem-link">Dashboard</Link>
+          <IoHomeOutline size={sizeIcon} color={colorIcon} />
+          <Link to="/home" className="elem-link">Inicio</Link>
         </li>
         <li>
-          <TbReportAnalytics size={36} color="white" />
-          <Link className="elem-link">Reportes</Link>
+          <MdOutlineAccountBalance size={sizeIcon} color={colorIcon} />
+          <Link to="/home/account" className="elem-link">Cuentas</Link>
         </li>
         <hr />
 
         <h4>Avanzado</h4>
         <li>
-          <IoAnalytics size={36} color="white" />
-          <Link className="elem-link">Analisis</Link>
+          <IoBookOutline size={sizeIcon} color={colorIcon} />
+          <Link className="elem-link">Libros</Link>
         </li>
         <li>
-          <MdDeveloperMode size={36} color="white" />
-          <Link className="elem-link">Desarrollador</Link>
+          <PiSneakerMove size={sizeIcon} color={colorIcon} />
+          <Link className="elem-link">Movimientos</Link>
         </li>
 
         <hr />
 
-        <h4>Cuenta</h4>
+        <h4>Preferencias</h4>
         <li>
-          <IoSettingsOutline size={36} color="white" />
+          <IoSettingsOutline size={sizeIcon} color={colorIcon} />
           <Link className="elem-link">Configuración</Link>
         </li>
         <li>
-          <MdOutlineSupervisorAccount size={36} color="white" />
+          <MdOutlineSupervisorAccount size={sizeIcon} color={colorIcon} />
           <Link className="elem-link">Usuario</Link>
         </li>
       </ul>

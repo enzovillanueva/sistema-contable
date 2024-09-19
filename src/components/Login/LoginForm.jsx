@@ -1,22 +1,24 @@
 import { FaUser, FaLock } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../../context/UserProvider";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+
+const initialForm = {
+    username: "",
+    password: "",
+};
+// url backend - Spring Boot
+const urlBackendLogin = "http://localhost:8080/api/login"
+
+
 export const LoginForm = ({ avatarLogin, login, form }) => {
-    const navigate = useNavigate();
-    const { setUser } = useUser();
 
-    const initialForm = {
-        username: "",
-        password: "",
-    };
-
-    const { formState, onInputChange } = form(initialForm);
+    const { formState, setFormState,  onInputChange } = form(initialForm);
 
     const { username, password } = formState;
 
     const onSumbit = async (event) => {
         event.preventDefault();
-        const response = await fetch("http://localhost:8080/api/login", {
+        const response = await fetch(urlBackendLogin, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password }),
@@ -24,11 +26,14 @@ export const LoginForm = ({ avatarLogin, login, form }) => {
 
         if (response.ok) {
             const userData = await response.json();
-            login();
-            setUser(userData);
-            navigate("/home");
+            login(userData);
         } else {
-            alert("error en el inicio de sesión");
+            Swal.fire({
+                title: "Error de inicio de sesión",
+                text: "Usuario o contraseña incorrecto",
+                icon: "error",
+            });
+            setFormState(initialForm);
         }
     };
 

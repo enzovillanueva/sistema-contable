@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+
 import Table from "react-bootstrap/Table";
 import "../styles/ArticleHomePage.css";
 import { useFetchGET } from "../hooks/useFetchGET";

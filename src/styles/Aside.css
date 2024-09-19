@@ -71,6 +71,7 @@
     font-size: 1.2em;
     text-decoration: none;
     padding: 10px;
+    width: 100%;
     font-weight: bolder;
     white-space: nowrap;
 }

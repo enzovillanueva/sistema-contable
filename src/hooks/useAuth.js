@@ -1,28 +1,45 @@
-import { useState, useEffect } from "react";
+import { useReducer } from "react";
+import { loginReducer } from "../reducer/loginReducer"
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserProvider";
 
-// Hook para manejar la autenticación con localStorage
+const initialLogin = JSON.parse(sessionStorage.getItem('login')) || {
+  isAuth: false,
+  user: null
+}
+
 export const useAuth = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [login, dispatch] = useReducer(loginReducer, initialLogin);
+  const { setUser } = useUser();
+  const navigate = useNavigate();
 
-  // Al usar el hook, se verifica si ya está autenticado
-  useEffect(() => {
-    const storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth === "true") {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  // Función para iniciar sesión
-  const login = () => {
-    setIsAuthenticated(true);
-    localStorage.setItem("isAuthenticated", "true");
+  const handleLogin = (user) => {
+    dispatch({
+      type: 'login',
+      payload: user
+    });
+    sessionStorage.setItem('login', JSON.stringify({
+      isAuth: true,
+      user
+    }));
+    setUser(user);
+    navigate("/home");
   };
 
-  // Función para cerrar sesión
-  const logout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem("isAuthenticated");
+  const handleLogout = () => {
+    dispatch({
+      type: 'logout'
+    });
+    setUser(null);
+    navigate('/login');
+    sessionStorage.removeItem('login');
   };
 
-  return { isAuthenticated, login, logout };
+  return {
+    login,
+    handleLogin,
+    handleLogout
+  };
 };
+
+

@@ -1,5 +1,5 @@
 import React from "react";
-import { Head } from "../components/Header";
+import { Head } from "../components/Head";
 import frontPage from "../assets/preview/front-preview.svg";
 import "../styles/Preview.css";
 

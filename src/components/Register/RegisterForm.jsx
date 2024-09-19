@@ -2,14 +2,19 @@ import React from "react";
 import { TbSelector } from "react-icons/tb";
 import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { AlertModal } from "../../utils/AlertModal";
+
+const initialForm = {
+    username: "",
+    password: "",
+    roles: "USER"
+};
+// url Backend - Spring Boot
+const urlBackendRegister = "http://localhost:8080/api/register";
+
 
 export const RegisterForm = ({ avatarRegister, form }) => {
     const navigate = useNavigate();
-    const initialForm = {
-        username: "",
-        password: "",
-        roles: "USER"
-    };
 
     const { formState, setFormState, onInputChange } = form(initialForm);
 
@@ -22,7 +27,7 @@ export const RegisterForm = ({ avatarRegister, form }) => {
     const onSumbit = async (event) => {
         event.preventDefault();
         console.log(formState);
-        const response = await fetch("http://localhost:8080/api/register", {
+        const response = await fetch(urlBackendRegister, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password, roles }),
@@ -31,7 +36,7 @@ export const RegisterForm = ({ avatarRegister, form }) => {
         if (response.ok) {
             navigate("/login");
         } else {
-            alert("Error en la registración");
+            AlertModal("Error de registro de datos", "Intente nuevamente", "error")
             onClean();
         }
     };

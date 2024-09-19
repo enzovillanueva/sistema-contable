@@ -1,32 +1,33 @@
-import React, { useState } from "react";
-import { Head } from "../components/Header";
+import { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Head } from "../components/Head";
 import { Dashboard } from "./Dashboard";
 import { Aside } from "../components/Aside";
-import { useUser } from "../context/UserProvider";
 import "../styles/Home.css";
+import { AlertModal } from "../utils/AlertModal";
 
-export const Home = ( {onLogout} ) => {
+export const Home = ({ onLogout, auth }) => {
+  const isAccountPage = useLocation().pathname === "/home";
+  const navigate = useNavigate();
 
-  const { user } = useUser();
-  
-  if (!user) {
-    navigate('/login');
-    return null;
-  }
+  useEffect(() => {
+    if (!auth) {
+      AlertModal("Ruta restringida", "Tienes que iniciar sesión", "error").then(() => {
+        navigate("/login");
+      })
+    }
+  }, [auth]);
 
   return (
     <>
       <div className={`view-layout`}>
         <Aside />
-        <div className="main-content">
-          <Head login={true} logout={onLogout} rol={user?.roles} />
-          {user?.roles == "SUPERUSER" ? (
-            <Dashboard />
-          ) : (
-            <div>Bienvenido! Agregar Contenido</div>
-          )}
-          {/* Todo el contenido */}
-        </div>
+        <main className="main-content">
+          <Head login={true} logout={onLogout} />
+          {/* Si vuelvo a /home, vuelvo a mostrar el Dashboard */}
+          {isAccountPage && <Dashboard />}
+          <Outlet />
+        </main>
       </div>
     </>
   );
