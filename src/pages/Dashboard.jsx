@@ -1,5 +1,4 @@
 
-import Table from "react-bootstrap/Table";
 import "../styles/ArticleHomePage.css";
 import { useFetchGET } from "../hooks/useFetchGET";
 
@@ -15,7 +14,7 @@ export const Dashboard = () => {
       {isLoading ? (
         <h2>Cargando..</h2>
       ) : (
-        <Table striped bordered hover size="sm">
+        <table>
           <thead>
             <tr>
               <th>ID</th>
@@ -32,7 +31,7 @@ export const Dashboard = () => {
               </tr>
             ))}
           </tbody>
-        </Table>
+        </table>
       )}
     </div>
   );
