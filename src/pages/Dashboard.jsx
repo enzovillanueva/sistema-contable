@@ -2,9 +2,11 @@
 import "../styles/ArticleHomePage.css";
 import { useFetchGET } from "../hooks/useFetchGET";
 
+const urlUsers = "http://localhost:8080/api/users"
+
 export const Dashboard = () => {
 
-  const { state }  = useFetchGET("http://localhost:8080/api/users");
+  const { state }  = useFetchGET(urlUsers);
   const {data, isLoading, errors } = state;
 
   return (
