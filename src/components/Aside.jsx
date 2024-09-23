@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineAccountBalance, MdOutlineSupervisorAccount } from "react-icons/md";
+import { TbReportAnalytics } from "react-icons/tb";
 import { PiSneakerMove } from "react-icons/pi";
 import { IoSettingsOutline, IoHomeOutline, IoBookOutline } from "react-icons/io5";
 import logo from "../assets/icono-sistema.png";
@@ -42,6 +43,12 @@ export const Aside = () => {
            <div>Cuentas</div>
            </Link>
         </li>
+        <li>
+          <Link className="elem-link">
+            <MdOutlineSupervisorAccount size={sizeIcon} color={colorIcon} />
+            <div>Usuario</div>
+          </Link>
+        </li>
         <hr />
 
         <h4>Avanzado</h4>
@@ -57,6 +64,12 @@ export const Aside = () => {
             <div>Movimientos</div>
           </Link>
         </li>
+        <li>
+          <Link className="elem-link">
+            <TbReportAnalytics size={sizeIcon} color={colorIcon} />
+            <div>Asientos</div>
+          </Link>
+        </li>
 
         <hr />
 
@@ -65,12 +78,6 @@ export const Aside = () => {
           <Link className="elem-link">
             <IoSettingsOutline size={sizeIcon} color={colorIcon} />
             <div>Configuración</div>
-          </Link>
-        </li>
-        <li>
-          <Link className="elem-link">
-            <MdOutlineSupervisorAccount size={sizeIcon} color={colorIcon} />
-            <div>Usuario</div>
           </Link>
         </li>
       </ul>
