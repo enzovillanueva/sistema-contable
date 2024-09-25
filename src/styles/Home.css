@@ -19,7 +19,7 @@
 
 
     /* Estilo del Head - El div de roles desaparece cuando se despliega el menu*/
-    .roles{
+    .text-wel{
         opacity: 0;
         visibility: visible;
     }

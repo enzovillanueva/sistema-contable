@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserProvider";
 import logo from "../assets/icono-sistema.png";
 import avatarUsuario from "../assets/avatars/admin-4.png"
-import "../styles/Header.css";
+import "../styles/Head.css";
 
 export const Head = ({ login = false, logout }) => {
   const navigate = useNavigate();
@@ -13,11 +13,7 @@ export const Head = ({ login = false, logout }) => {
       <header className="cabecera" style={ {background: ` ${login ? "rgba(255, 255, 255, 0.2)" : "rgb(0, 0, 0, 0.6)"}`} }>
         {login ? (
           // Otro componente?
-          user?.roles === "SUPERUSER" ? (
-            <div className="roles a">Administrador</div>
-          ) : (
-            <div className="roles b">Usuario</div>
-          )
+          <div className="text-wel">{`¡Bienvenido ${user?.username}!`}</div>
         ) : (
           <Link
             className="logo-system"

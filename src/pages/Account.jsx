@@ -1,6 +1,6 @@
 
 export const Account = () => {
   return (
-    <div>Account</div>
+    <h1>Pagina de Account</h1>
   )
 }

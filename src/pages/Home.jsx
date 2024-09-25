@@ -3,8 +3,8 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Head } from "../components/Head";
 import { Dashboard } from "./Dashboard";
 import { Aside } from "../components/Aside";
-import "../styles/Home.css";
 import { AlertModal } from "../utils/AlertModal";
+import "../styles/Home.css";
 
 export const Home = ({ onLogout, auth }) => {
   const isAccountPage = useLocation().pathname === "/home";

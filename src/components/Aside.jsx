@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineAccountBalance, MdOutlineSupervisorAccount } from "react-icons/md";
 import { TbReportAnalytics } from "react-icons/tb";
 import { PiSneakerMove } from "react-icons/pi";
 import { IoSettingsOutline, IoHomeOutline, IoBookOutline } from "react-icons/io5";
+import { useUser } from "../context/UserProvider";
+import { Badge } from "./Badge";
 import logo from "../assets/icono-sistema.png";
 import "../styles/Aside.css";
 
@@ -13,6 +15,7 @@ const colorIcon = "white";
 export const Aside = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user } = useUser();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -28,7 +31,7 @@ export const Aside = () => {
         <img src={logo} alt="" />
         <h2 className="text-logo">Sistema Contable</h2>
       </Link>
-
+      <Badge rol={user?.roles}/>
       <ul className="links-aside">
         <h4>Menu principal</h4>
         <li>
@@ -44,9 +47,9 @@ export const Aside = () => {
            </Link>
         </li>
         <li>
-          <Link className="elem-link">
+          <Link to="/home/users" className="elem-link">
             <MdOutlineSupervisorAccount size={sizeIcon} color={colorIcon} />
-            <div>Usuario</div>
+            <div>Usuarios</div>
           </Link>
         </li>
         <hr />
